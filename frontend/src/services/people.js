@@ -19,6 +19,7 @@ const getPeople = async () => {
     headers: { Authorization: token }
   }
   const response = await axios.get(baseUrl, config)
+  console.log('henkilöt haettu (service)')
   return response.data
 }
 

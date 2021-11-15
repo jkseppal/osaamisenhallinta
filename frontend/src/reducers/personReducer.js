@@ -35,7 +35,7 @@ export const initializePeople = () => {
 
 export const createPerson = content => {
   return async dispatch => {
-    userService.addPerson(content)
+    personService.addPerson(content)
     dispatch ({
       type: 'ADD_PERSON',
       data: content
@@ -45,7 +45,7 @@ export const createPerson = content => {
 
 export const updatePerson = (id, content) => {
   return async dispatch => {
-    const updatedPerson = await userService.updatePerson(id, content)
+    const updatedPerson = await personService.updatePerson(id, content)
     dispatch ({
       type: 'UPDATE_PERSON',
       data: updatedPerson

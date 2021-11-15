@@ -4,6 +4,10 @@ import loginService from '../services/login'
 import personService from '../services/people'
 import userService from '../services/users'
 import { Form, Button } from 'react-bootstrap'
+import { notificationChange } from '../reducers/notificationReducer'
+import { errorMessageChange } from '../reducers/errorReducer'
+import Notification from './Notification'
+import ErrorMessage from './ErrorMessage'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -37,20 +41,26 @@ const Login = () => {
       setUsername('')
       setPassword('')
       window.location.assign('/home')
-      //dispatch(notificationChange('Onnistunut sisäänkirjautuminen!', 3))
+      dispatch(notificationChange('Onnistunut sisäänkirjautuminen!', 3))
     } catch (exception) {
-      //dispatch(errorMessageChange('Virheellinen käyttäjätunnus tai salasana', 5))
+      dispatch(errorMessageChange('Virheellinen käyttäjätunnus tai salasana', 5))
       console.log('invalid username or password')
     }
   }
 
   if (user) {
     return (
-      <h2>Sisäänkirjautuminen onnistunut</h2>
+      <div>
+        <Notification />
+        <ErrorMessage />
+        <h2>Sisäänkirjautuminen onnistunut</h2>
+      </div>
     )
   } else {
     return (
       <div>
+        <Notification />
+        <ErrorMessage />
         <h2>Kirjaudu sisään:</h2>
         <Form id="login" onSubmit={handleLogin}>
           <table>

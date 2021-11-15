@@ -16,10 +16,8 @@ const createUser = async newObject => {
 }
 
 const getUsers = async () => {
-  const config = {
-    headers: { Authorization: token }
-  }
-  const response = await axios.get(baseUrl, config)
+  const response = await axios.get(baseUrl)
+  console.log('käyttäjät haettu (service)')
   return response.data
 }
 
