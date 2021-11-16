@@ -39,4 +39,20 @@ peopleRouter.post('/', async (request, response) => {
   }
 })
 
+peopleRouter.put('/:id', async (request, response) => {
+  const body = request.body
+  if (request.token === undefined) {
+    return response.status(401).json({ error: 'token missing' })
+  }
+  const decodedToken = jwt.verify(request.token, process.env.SECRET)
+  if (!request.token || !decodedToken.id) {
+    return response.status(401).json({ error: 'token missing or invalid' })
+  }
+  const person = {
+    ...body
+  }
+  const savedPerson = await Person.findByIdAndUpdate(request.params.id, blog, { new: true, useFindAndModify: false })
+  response.json(savedPerson.toJSON())
+})
+
 module.exports = peopleRouter

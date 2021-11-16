@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import { Table, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import ErrorMessage from './ErrorMessage'
-import Notification from './Notification'
-import NavBar from './NavBar'
 
-const People = ({ people, handleLogout }) => {
+const People = ({ people }) => {
   const [firstFilter, setFirstFilter] = useState('')
   const [surFilter, setSurFilter] = useState('')
   const [hetuFilter, setHetuFilter] = useState('')
@@ -30,9 +27,6 @@ const People = ({ people, handleLogout }) => {
 
   return (
     <div>
-      <NavBar handleLogout={handleLogout} />
-      <Notification />
-      <ErrorMessage />
       <h2>Järjestelmästä löytyvät henkilöt:</h2>
       <table>
         <tbody>

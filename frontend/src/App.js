@@ -8,7 +8,11 @@ import { createPerson, initializePeople } from './reducers/personReducer'
 //import { initializeUsers } from './reducers/usersReducer'
 import { errorMessageChange } from './reducers/errorReducer'
 import PersonForm from './components/PersonForm'
+import Person from './components/Person'
 import People from './components/People'
+import NavBar from './components/NavBar'
+import Notification from './components/Notification'
+import ErrorMessage from './components/ErrorMessage'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -64,31 +68,41 @@ const App = () => {
   }
   
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/home">
-            <Home
-              handleLogout={handleLogout}
-              users = {users}
-              people = {people}
-            />
-          </Route>
-          <Route path="/add-person">
-            <PersonForm
-              addPerson={addPerson}
-              user={user}
-            />
-          </Route>
-          <Route path="/people">
-            <People
-              handleLogout={handleLogout}
-              people={people}
-            />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <div>
+      <Router>
+        <NavBar handleLogout={handleLogout} />
+        <Notification />
+        <ErrorMessage />
+        <div>
+          <Switch>
+            <Route path="/home">
+              <Home
+                handleLogout={handleLogout}
+                users = {users}
+                people = {people}
+              />
+            </Route>
+            <Route path="/add-person">
+              <PersonForm
+                addPerson={addPerson}
+                user={user}
+              />
+            </Route>
+            <Route path="/people/:id">
+              <Person
+                people={people}
+              />
+            </Route>
+            <Route path="/people">
+              <People
+                handleLogout={handleLogout}
+                people={people}
+              />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    </div>
   )
 }
 

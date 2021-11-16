@@ -18,7 +18,41 @@ const personSchema = mongoose.Schema({
     minlength: 11,
     maxlength: 11,
     unique: true
-  }
+  },
+  licenses: [
+    {
+      initialDate: {
+        type: String,
+      },
+      content: {
+        type: String,
+      },
+      expirationDate: {
+        type: String,
+      }
+    }
+  ], physicals: [
+    {
+      date: {
+        type: String,
+      },
+      height: {
+        type: Number,
+      },
+      weight: {
+        type: Number,
+      },
+      pullUps: {
+        type: Number,
+      },
+      pushUps: {
+        type: Number,
+      },
+      cooper: {
+        type: Number,
+      }
+    }
+  ]
 })
 
 personSchema.plugin(uniqueValidator)
