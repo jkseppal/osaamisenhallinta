@@ -5,9 +5,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { notificationChange } from './reducers/notificationReducer'
 import { createPerson, initializePeople } from './reducers/personReducer'
-import { initializeUsers } from './reducers/usersReducer'
+//import { initializeUsers } from './reducers/usersReducer'
 import { errorMessageChange } from './reducers/errorReducer'
 import PersonForm from './components/PersonForm'
+import People from './components/People'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -22,17 +23,17 @@ const App = () => {
     }
   }, [])
 
-  useEffect((user) => {
+  useEffect(() => {
     dispatch(initializePeople())
     console.log('henkilöt haettu')
   }, [dispatch])
 
-  useEffect((user) => {
+  /*useEffect((user) => {
     if (user) {
       dispatch(initializeUsers())
       console.log('käyttäjät haettu')
     }
-  }, [dispatch])
+  }, [dispatch])*/
 
   let users = useSelector(state => state.users)
   let people = useSelector(state => state.people)
@@ -77,6 +78,12 @@ const App = () => {
             <PersonForm
               addPerson={addPerson}
               user={user}
+            />
+          </Route>
+          <Route path="/people">
+            <People
+              handleLogout={handleLogout}
+              people={people}
             />
           </Route>
         </Switch>

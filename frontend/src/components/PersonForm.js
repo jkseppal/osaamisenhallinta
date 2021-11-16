@@ -4,7 +4,7 @@ import Notification from './Notification'
 import ErrorMessage from './ErrorMessage'
 import NavBar from './NavBar'
 
-const PersonForm = ({ addPerson, user }) => {
+const PersonForm = ({ addPerson, user, handleLogout }) => {
   const [firstname, setFirstname] = useState('')
   const [surname, setSurname] = useState('')
   const [sosID, setSosID] = useState('')
@@ -41,7 +41,7 @@ const PersonForm = ({ addPerson, user }) => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar handleLogout={handleLogout}/>
       <Notification />
       <ErrorMessage />
       <h2>Lisää henkilö:</h2>
