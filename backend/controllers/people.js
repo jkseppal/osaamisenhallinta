@@ -41,6 +41,8 @@ peopleRouter.post('/', async (request, response) => {
 
 peopleRouter.put('/:id', async (request, response) => {
   const body = request.body
+  console.log('request.body: ', request.body)
+  console.log('body: ', body)
   if (request.token === undefined) {
     return response.status(401).json({ error: 'token missing' })
   }
@@ -51,7 +53,8 @@ peopleRouter.put('/:id', async (request, response) => {
   const person = {
     ...body
   }
-  const savedPerson = await Person.findByIdAndUpdate(request.params.id, blog, { new: true, useFindAndModify: false })
+  console.log('person before update: ', person)
+  const savedPerson = await Person.findByIdAndUpdate(request.params.id, person, { new: true, useFindAndModify: false })
   response.json(savedPerson.toJSON())
 })
 

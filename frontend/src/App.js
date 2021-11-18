@@ -4,7 +4,7 @@ import Home from './components/Home'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { notificationChange } from './reducers/notificationReducer'
-import { createPerson, initializePeople } from './reducers/personReducer'
+import { createPerson, initializePeople, updatePerson } from './reducers/personReducer'
 //import { initializeUsers } from './reducers/usersReducer'
 import { errorMessageChange } from './reducers/errorReducer'
 import PersonForm from './components/PersonForm'
@@ -32,13 +32,6 @@ const App = () => {
     console.log('henkilöt haettu')
   }, [dispatch])
 
-  /*useEffect((user) => {
-    if (user) {
-      dispatch(initializeUsers())
-      console.log('käyttäjät haettu')
-    }
-  }, [dispatch])*/
-
   let users = useSelector(state => state.users)
   let people = useSelector(state => state.people)
   
@@ -51,13 +44,25 @@ const App = () => {
     return false
   }
 
+  const personUpdate = async (id, personObject) => {
+    try {
+      console.log('id on personUpdate: ', id)
+      console.log('personObject on personUpdate: ', personObject)
+      await dispatch(updatePerson(id, personObject))
+      dispatch(notificationChange('tiedot lisätty', 5))
+    } catch (exception) {
+      dispatch(errorMessageChange('tietojen lisäys epäonnistui', 5))
+    }
+
+  }
+
   const addPerson = async (personObject) => {
     try {
       console.log('yritys...')
       await dispatch(createPerson(personObject))
-      dispatch(notificationChange('henkilö lisätty'))
+      dispatch(notificationChange('henkilö lisätty', 5))
     } catch (exception) {
-      dispatch(errorMessageChange('henkilön lisääminen epäonnistui'))
+      dispatch(errorMessageChange('henkilön lisääminen epäonnistui', 5))
     }
   }
 
@@ -91,6 +96,7 @@ const App = () => {
             <Route path="/people/:id">
               <Person
                 people={people}
+                personUpdate={personUpdate}
               />
             </Route>
             <Route path="/people">

@@ -1,14 +1,20 @@
 import React, { useState, useRef } from 'react'
 import Togglable from './Togglabble'
 import { useParams } from 'react-router-dom'
-import { Table } from 'react-bootstrap'
+import { Modal, Table, Button } from 'react-bootstrap'
+import PhysicalForm from './PhysicalForm'
 
-const Person = ({ people, user }) => {
+const Person = ({ people, personUpdate }) => {
+  const [showPhysForm, setShowPhysForm] = useState(false)
+  
   const id = useParams().id
   const person = people.find(p => p.id === id)
 
   const physRef = useRef()
   const licRef = useRef()
+
+  const handlePhysShow = () => setShowPhysForm(true)
+  const handlePhysClose = () => setShowPhysForm(false)
 
   if (!person) {
     return null
@@ -43,6 +49,18 @@ const Person = ({ people, user }) => {
             )}
           </tbody>
         </Table>
+        <Button onClick={handlePhysShow}>lisää suoritus</Button>
+        <Modal size="lg" show={showPhysForm} onHide={handlePhysClose} className="modal">
+          <Modal.Header closeButton>
+            <Modal.Title>Lisää tiedot fyysisestä toimintakyvystä</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <PhysicalForm person={person} personUpdate={personUpdate} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handlePhysClose}>Peruuta</Button>
+          </Modal.Footer>
+        </Modal>
       </Togglable>
       <Togglable buttonLabel='lisenssit' closeText='piilota' ref={licRef}>
         <Table striped hover>
