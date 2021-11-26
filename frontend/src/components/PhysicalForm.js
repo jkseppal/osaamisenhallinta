@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 
-const PhysicalForm = ({ person, personUpdate }) => {
+const PhysicalForm = ({ person, personUpdate, handlePhysClose }) => {
   const [date, setDate] = useState('')
   const [height, setHeight] = useState(0)
   const [weight, setWeight] = useState(0)
@@ -36,6 +36,7 @@ const PhysicalForm = ({ person, personUpdate }) => {
     setPushUps(0)
     setPullUps(0)
     setCooper(0)
+    handlePhysClose()
   }
 
   return (

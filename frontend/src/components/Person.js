@@ -8,7 +8,7 @@ const Person = ({ people, personUpdate }) => {
   const [showPhysForm, setShowPhysForm] = useState(false)
   
   const id = useParams().id
-  const person = people.find(p => p.id === id)
+  let person = people.find(p => p.id === id)
 
   const physRef = useRef()
   const licRef = useRef()
@@ -55,7 +55,7 @@ const Person = ({ people, personUpdate }) => {
             <Modal.Title>Lisää tiedot fyysisestä toimintakyvystä</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <PhysicalForm person={person} personUpdate={personUpdate} />
+            <PhysicalForm person={person} personUpdate={personUpdate} handlePhysClose={handlePhysClose} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handlePhysClose}>Peruuta</Button>

@@ -49,6 +49,7 @@ const App = () => {
       console.log('id on personUpdate: ', id)
       console.log('personObject on personUpdate: ', personObject)
       await dispatch(updatePerson(id, personObject))
+      await dispatch(initializePeople())
       dispatch(notificationChange('tiedot lisätty', 5))
     } catch (exception) {
       dispatch(errorMessageChange('tietojen lisäys epäonnistui', 5))
@@ -76,9 +77,10 @@ const App = () => {
     <div>
       <Router>
         <NavBar handleLogout={handleLogout} />
-        <Notification />
-        <ErrorMessage />
-        <div>
+        
+        <div className="container">
+          <Notification />
+          <ErrorMessage />
           <Switch>
             <Route path="/home">
               <Home
