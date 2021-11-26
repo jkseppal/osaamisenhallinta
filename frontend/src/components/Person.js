@@ -3,9 +3,11 @@ import Togglable from './Togglabble'
 import { useParams } from 'react-router-dom'
 import { Modal, Table, Button } from 'react-bootstrap'
 import PhysicalForm from './PhysicalForm'
+import LicenseForm from './LicenseForm'
 
 const Person = ({ people, personUpdate }) => {
   const [showPhysForm, setShowPhysForm] = useState(false)
+  const [showLisForm, setShowLisForm] = useState(false)
   
   const id = useParams().id
   let person = people.find(p => p.id === id)
@@ -15,6 +17,9 @@ const Person = ({ people, personUpdate }) => {
 
   const handlePhysShow = () => setShowPhysForm(true)
   const handlePhysClose = () => setShowPhysForm(false)
+
+  const handleLisShow = () => setShowLisForm(true)
+  const handleLisClose = () => setShowLisForm(false)
 
   if (!person) {
     return null
@@ -81,6 +86,18 @@ const Person = ({ people, personUpdate }) => {
             )}
           </tbody>
         </Table>
+        <Button onClick={handleLisShow}>lisää lisenssi</Button>
+        <Modal size="lg" show={showLisForm} onHide={handleLisClose} className="modal">
+          <Modal.Header closeButton>
+            <Modal.Title>Lisää henkilölle lisenssi</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <LicenseForm person={person} personUpdate={personUpdate} handleLisClose={handleLisClose} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handlePhysClose}>Peruuta</Button>
+          </Modal.Footer>
+        </Modal>
       </Togglable>
     </div>
   )

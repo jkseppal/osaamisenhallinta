@@ -50,7 +50,7 @@ const PhysicalForm = ({ person, personUpdate, handlePhysClose }) => {
                 </td>
                 <td>
                   <Form.Control
-                    type="text"
+                    type="date"
                     id="date"
                     value={date}
                     onChange={({ target }) => setDate(target.value)}
@@ -124,7 +124,7 @@ const PhysicalForm = ({ person, personUpdate, handlePhysClose }) => {
               </tr>
             </tbody>
           </table>
-          <Button type="submit" id="login-button">lisää</Button>
+          <Button type="submit" id="physical-add-button">lisää</Button>
         </Form>
     </div>
   )
