@@ -5,6 +5,17 @@ const PersonForm = ({ addPerson, user }) => {
   const [firstname, setFirstname] = useState('')
   const [surname, setSurname] = useState('')
   const [sosID, setSosID] = useState('')
+  const [group, setGroup] = useState('varusmies')
+
+  const groupList = [
+    'varusmies',
+    'reserviläinen',
+    'aliupseeri',
+    'erikoisupseeri',
+    'nuorempi upseeri',
+    'upseeri',
+    'siviilityöntekijä'
+  ]
 
   const handlePersonAdd = (event) => {
     event.preventDefault()
@@ -13,6 +24,7 @@ const PersonForm = ({ addPerson, user }) => {
       firstname: firstname,
       surname: surname,
       sosID: sosID,
+      group: group,
       licenses: [],
       physicals: []
     })
@@ -81,6 +93,23 @@ const PersonForm = ({ addPerson, user }) => {
                   value={sosID}
                   onChange={({ target }) => setSosID(target.value)}
                 />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <Form.Label>henkilöstöryhmä</Form.Label>
+              </td>
+              <td>
+                <Form.Control
+                  as="select"
+                  id="group"
+                  value={group}
+                  onChange={({ target }) => setGroup(target.value)}
+                >
+                  {groupList.map(g => (
+                    <option key={g}>{g}</option>
+                  ))}
+                </Form.Control>
               </td>
             </tr>
           </tbody>

@@ -30,6 +30,7 @@ export const initializePeople = () => {
       type: 'INIT_PEOPLE',
       data: people
     })
+    console.log('peopleinit tehty')
   }
 }
 

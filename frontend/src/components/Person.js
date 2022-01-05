@@ -29,6 +29,7 @@ const Person = ({ people, personUpdate }) => {
     <div>
       <h2>{person.surname} {person.firstname}</h2>
       <h3>{person.sosID}</h3>
+      <p>henkilöstöryhmä: {person.group}</p>
       <Togglable buttonLabel='fyysinen toimintakyky' closeText='piilota' ref={physRef}>
         <Table striped hover>
           <thead>
