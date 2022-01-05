@@ -19,6 +19,45 @@ const personSchema = mongoose.Schema({
     maxlength: 11,
     unique: true
   },
+  groups: [
+    {
+      group: {
+        type: String
+      },
+      initialDate: {
+        type: String
+      },
+      endDate: {
+        String
+      }
+    }
+  ],
+  units: [
+    {
+      unit: {
+        type: String
+      },
+      initialDate: {
+        type: String
+      },
+      endDate: {
+        type: String
+      }
+    }
+  ],
+  missions: [
+    {
+      task: {
+        type: String
+      },
+      initialDate: {
+        type: String
+      },
+      endDate: {
+        type: String
+      }
+    }
+  ],
   licenses: [
     {
       initialDate: {

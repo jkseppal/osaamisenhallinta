@@ -8,6 +8,7 @@ import { notificationChange } from '../reducers/notificationReducer'
 import { errorMessageChange } from '../reducers/errorReducer'
 import Notification from './Notification'
 import ErrorMessage from './ErrorMessage'
+import tornileijona from '../tornileijona.svg'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -58,43 +59,46 @@ const Login = () => {
     )
   } else {
     return (
-      <div>
-        <Notification />
-        <ErrorMessage />
-        <h2>Kirjaudu sisään:</h2>
-        <Form id="login" onSubmit={handleLogin}>
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  <Form.Label>käyttäjätunnus</Form.Label>
-                </td>
-                <td>
-                  <Form.Control
-                    type="text"
-                    id="username"
-                    value={username}
-                    onChange={({ target }) => setUsername(target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <Form.Label>salasana</Form.Label>
-                </td>
-                <td>
-                  <Form.Control
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={({ target }) => setPassword(target.value)}
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <Button type="submit" id="login-button">kirjaudu</Button>
-        </Form>
+      <div className="login-box">
+        <div className="login" align="center">
+          <Notification />
+          <ErrorMessage />
+          <img src={tornileijona} alt="logo" width="100" />
+          <h2>kirjaudu sisään</h2>
+          <Form id="login" onSubmit={handleLogin}>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <Form.Label>käyttäjätunnus</Form.Label>
+                  </td>
+                  <td>
+                    <Form.Control
+                      type="text"
+                      id="username"
+                      value={username}
+                      onChange={({ target }) => setUsername(target.value)}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Form.Label>salasana</Form.Label>
+                  </td>
+                  <td>
+                    <Form.Control
+                      type="password"
+                      id="password"
+                      value={password}
+                      onChange={({ target }) => setPassword(target.value)}
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <Button type="submit" id="login-button">kirjaudu</Button>
+          </Form>
+        </div>
       </div>
     )
   }
