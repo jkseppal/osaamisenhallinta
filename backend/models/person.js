@@ -35,7 +35,7 @@ const personSchema = mongoose.Schema({
       }
     }
   ],
-  missions: [
+  tasks: [
     {
       task: {
         type: String

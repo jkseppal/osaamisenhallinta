@@ -1,21 +1,11 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 
-const PersonForm = ({ addPerson, user }) => {
+const PersonForm = ({ addPerson, user, groupList }) => {
   const [firstname, setFirstname] = useState('')
   const [surname, setSurname] = useState('')
   const [sosID, setSosID] = useState('')
   const [group, setGroup] = useState('varusmies')
-
-  const groupList = [
-    'varusmies',
-    'reserviläinen',
-    'aliupseeri',
-    'erikoisupseeri',
-    'nuorempi upseeri',
-    'upseeri',
-    'siviilityöntekijä'
-  ]
 
   const handlePersonAdd = (event) => {
     event.preventDefault()

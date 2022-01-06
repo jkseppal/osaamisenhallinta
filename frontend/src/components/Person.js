@@ -4,22 +4,28 @@ import { useParams } from 'react-router-dom'
 import { Modal, Table, Button } from 'react-bootstrap'
 import PhysicalForm from './PhysicalForm'
 import LicenseForm from './LicenseForm'
+import GroupForm from './GroupForm'
 
-const Person = ({ people, personUpdate }) => {
+const Person = ({ people, personUpdate, groupList }) => {
   const [showPhysForm, setShowPhysForm] = useState(false)
   const [showLisForm, setShowLisForm] = useState(false)
+  //const [showGroupForm, setShowGroupForm] = useState(false)
   
   const id = useParams().id
   let person = people.find(p => p.id === id)
 
   const physRef = useRef()
   const licRef = useRef()
+  const groupRef = useRef()
 
   const handlePhysShow = () => setShowPhysForm(true)
   const handlePhysClose = () => setShowPhysForm(false)
 
   const handleLisShow = () => setShowLisForm(true)
   const handleLisClose = () => setShowLisForm(false)
+
+  //const handleGroupShow = () => setShowGroupForm(true)
+  //const handleGroupClose = () => setShowGroupForm(false)
 
   if (!person) {
     return null
@@ -30,6 +36,9 @@ const Person = ({ people, personUpdate }) => {
       <h2>{person.surname} {person.firstname}</h2>
       <h3>{person.sosID}</h3>
       <p>henkilöstöryhmä: {person.group}</p>
+      <Togglable buttonLabel='muuta henkilöstöryhmää' closeText='piilota' ref={groupRef}>
+        <GroupForm person={person} personUpdate={personUpdate} groupList={groupList} />
+      </Togglable>
       <Togglable buttonLabel='fyysinen toimintakyky' closeText='piilota' ref={physRef}>
         <Table striped hover>
           <thead>

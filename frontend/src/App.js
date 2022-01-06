@@ -34,6 +34,16 @@ const App = () => {
 
   let users = useSelector(state => state.users)
   let people = useSelector(state => state.people)
+
+  const groupList = [
+    'varusmies',
+    'reserviläinen',
+    'aliupseeri',
+    'erikoisupseeri',
+    'nuorempi upseeri',
+    'upseeri',
+    'siviilityöntekijä'
+  ]
   
   const handleLogout = async (event) => {
     event.preventDefault()
@@ -94,12 +104,14 @@ const App = () => {
               <PersonForm
                 addPerson={addPerson}
                 user={user}
+                groupList={groupList}
               />
             </Route>
             <Route path="/people/:id">
               <Person
                 people={people}
                 personUpdate={personUpdate}
+                groupList={groupList}
               />
             </Route>
             <Route path="/people">
