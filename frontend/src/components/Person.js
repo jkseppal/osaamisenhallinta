@@ -5,11 +5,12 @@ import { Modal, Table, Button } from 'react-bootstrap'
 import PhysicalForm from './PhysicalForm'
 import LicenseForm from './LicenseForm'
 import GroupForm from './GroupForm'
+import TaskForm from './TaskForm'
 
 const Person = ({ people, personUpdate, groupList }) => {
   const [showPhysForm, setShowPhysForm] = useState(false)
   const [showLisForm, setShowLisForm] = useState(false)
-  //const [showGroupForm, setShowGroupForm] = useState(false)
+  const [showTaskForm, setShowTaskForm] = useState(false)
   
   const id = useParams().id
   let person = people.find(p => p.id === id)
@@ -17,6 +18,7 @@ const Person = ({ people, personUpdate, groupList }) => {
   const physRef = useRef()
   const licRef = useRef()
   const groupRef = useRef()
+  const taskRef = useRef()
 
   const handlePhysShow = () => setShowPhysForm(true)
   const handlePhysClose = () => setShowPhysForm(false)
@@ -24,8 +26,8 @@ const Person = ({ people, personUpdate, groupList }) => {
   const handleLisShow = () => setShowLisForm(true)
   const handleLisClose = () => setShowLisForm(false)
 
-  //const handleGroupShow = () => setShowGroupForm(true)
-  //const handleGroupClose = () => setShowGroupForm(false)
+  const handleTaskShow = () => setShowTaskForm(true)
+  const handleTaskClose = () => setShowTaskForm(false)
 
   if (!person) {
     return null
@@ -38,6 +40,38 @@ const Person = ({ people, personUpdate, groupList }) => {
       <p>henkilöstöryhmä: {person.group}</p>
       <Togglable buttonLabel='muuta henkilöstöryhmää' closeText='piilota' ref={groupRef}>
         <GroupForm person={person} personUpdate={personUpdate} groupList={groupList} />
+      </Togglable>
+      <Togglable buttonLabel='tehtävät' closeText='piilota' ref={taskRef}>
+        <Table striped hover>
+          <thead>
+            <tr>
+              <td>tehtävä</td>
+              <td>alkupäivämäärä</td>
+              <td>loppupäivämäärä</td>
+            </tr>
+          </thead>
+          <tbody>
+            {person.tasks.map(t =>
+              <tr key={t.initialDate}>
+                <td>{t.task}</td>
+                <td>{t.initialDate}</td>
+                <td>{t.endDate}</td>
+              </tr>
+            )}
+          </tbody>
+        </Table>
+        <Button onClick={handleTaskShow}>lisää tehtävä</Button>
+        <Modal size="lg" show={showTaskForm} onHide={handleTaskClose} className="modal">
+          <Modal.Header closeButton>
+            <Modal.Title>Lisää henkilölle tehtävä</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <TaskForm person={person} personUpdate={personUpdate} handleTaskClose={handleTaskClose} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleTaskClose}>Peruuta</Button>
+          </Modal.Footer>
+        </Modal>
       </Togglable>
       <Togglable buttonLabel='fyysinen toimintakyky' closeText='piilota' ref={physRef}>
         <Table striped hover>
@@ -105,7 +139,7 @@ const Person = ({ people, personUpdate, groupList }) => {
             <LicenseForm person={person} personUpdate={personUpdate} handleLisClose={handleLisClose} />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handlePhysClose}>Peruuta</Button>
+            <Button variant="secondary" onClick={handleLisClose}>Peruuta</Button>
           </Modal.Footer>
         </Modal>
       </Togglable>

@@ -6,7 +6,6 @@ const GroupForm = ({ person, personUpdate, groupList }) => {
 
   const handleUpdate = (event) => {
     event.preventDefault()
-    //const group = newGroup
     const personToUpdate = {
       ...person,
       group: newGroup
