@@ -6,6 +6,7 @@ import PhysicalForm from './PhysicalForm'
 import LicenseForm from './LicenseForm'
 import GroupForm from './GroupForm'
 import TaskForm from './TaskForm'
+import TaskEndDate from './TaskEndDate'
 
 const Person = ({ people, personUpdate, groupList }) => {
   const [showPhysForm, setShowPhysForm] = useState(false)
@@ -55,7 +56,7 @@ const Person = ({ people, personUpdate, groupList }) => {
               <tr key={t.initialDate}>
                 <td>{t.task}</td>
                 <td>{t.initialDate}</td>
-                <td>{t.endDate}</td>
+                <td><TaskEndDate date={t.endDate} person={person} task={t} personUpdate={personUpdate} index={person.tasks.indexOf(t)} /></td>
               </tr>
             )}
           </tbody>
