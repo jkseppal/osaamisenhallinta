@@ -60,7 +60,7 @@ const Person = ({ people, personUpdate, groupList }) => {
           </thead>
           <tbody>
             {person.units.map(u =>
-              <tr key={u.initialDate}>
+              <tr key={u.id}>
                 <td>{u.unit}</td>
                 <td>{u.initialDate}</td>
                 <td><UnitEndDate date={u.endDate} person={person} unit={u} personUpdate={personUpdate} index={person.units.indexOf(u)} /></td>
@@ -68,7 +68,7 @@ const Person = ({ people, personUpdate, groupList }) => {
             )}
           </tbody>
         </Table>
-        <Button onClick={handleUnitShow}>lisää tehtävä</Button>
+        <Button onClick={handleUnitShow}>lisää yksikkö</Button>
         <Modal size="lg" show={showUnitForm} onHide={handleUnitClose} className="modal">
           <Modal.Header closeButton>
             <Modal.Title>Lisää henkilölle yksikkö</Modal.Title>
@@ -92,7 +92,7 @@ const Person = ({ people, personUpdate, groupList }) => {
           </thead>
           <tbody>
             {person.tasks.map(t =>
-              <tr key={t.initialDate}>
+              <tr key={t.id}>
                 <td>{t.task}</td>
                 <td>{t.initialDate}</td>
                 <td><TaskEndDate date={t.endDate} person={person} task={t} personUpdate={personUpdate} index={person.tasks.indexOf(t)} /></td>
@@ -127,7 +127,7 @@ const Person = ({ people, personUpdate, groupList }) => {
           </thead>
           <tbody>
             {person.physicals.map(p =>
-              <tr key={p.date}>
+              <tr key={p.id}>
                 <td>{p.date}</td>
                 <td>{p.height}</td>
                 <td>{p.weight}</td>
@@ -162,7 +162,7 @@ const Person = ({ people, personUpdate, groupList }) => {
           </thead>
           <tbody>
             {person.licenses.map(l =>
-              <tr key={l.content}>
+              <tr key={l.id}>
                 <td>{l.content}</td>
                 <td>{l.initialDate}</td>
                 <td>{l.expirationDate}</td>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { v4 as uuidv4 } from 'uuid'
 
 const PhysicalForm = ({ person, personUpdate, handlePhysClose }) => {
   const [date, setDate] = useState('')
@@ -17,7 +18,8 @@ const PhysicalForm = ({ person, personUpdate, handlePhysClose }) => {
       weight:weight,
       pushUps: pushUps,
       pullUps: pullUps,
-      cooper: cooper
+      cooper: cooper,
+      id: uuidv4()
     }
     console.log('person before: ', person)
     console.log('new physical: ', physical)

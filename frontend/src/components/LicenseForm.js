@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { v4 as uuidv4 } from 'uuid'
 
 const LicenseForm = ({ person, personUpdate, handleLisClose }) => {
   const [initialDate, setInitialDate] = useState('')
@@ -11,7 +12,8 @@ const LicenseForm = ({ person, personUpdate, handleLisClose }) => {
     const license = {
       initialDate: initialDate,
       content: content,
-      expirationDate: expirationDate
+      expirationDate: expirationDate,
+      id: uuidv4()
     }
     console.log('person before: ', person)
     console.log('new license: ', license)

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { v4 as uuidv4 } from 'uuid'
 
 const UnitForm = ({ person, personUpdate, handleUnitClose }) => {
   const [initialDate, setInitialDate] = useState('')
@@ -10,6 +11,7 @@ const UnitForm = ({ person, personUpdate, handleUnitClose }) => {
     const unitToAdd = {
       initialDate: initialDate,
       unit: newUnit,
+      id: uuidv4()
     }
     const units = person.units.concat(unitToAdd)
     console.log('new array: ', units)

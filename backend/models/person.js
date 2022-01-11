@@ -32,6 +32,9 @@ const personSchema = mongoose.Schema({
       },
       endDate: {
         type: String
+      },
+      id: {
+        type: String
       }
     }
   ],
@@ -44,6 +47,9 @@ const personSchema = mongoose.Schema({
         type: String
       },
       endDate: {
+        type: String
+      },
+      id: {
         type: String
       }
     }
@@ -58,6 +64,9 @@ const personSchema = mongoose.Schema({
       },
       expirationDate: {
         type: String,
+      },
+      id: {
+        type: String
       }
     }
   ], physicals: [
@@ -79,6 +88,9 @@ const personSchema = mongoose.Schema({
       },
       cooper: {
         type: Number,
+      },
+      id: {
+        type: String
       }
     }
   ]

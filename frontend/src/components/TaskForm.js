@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { v4 as uuidv4 } from 'uuid'
 
 const TaskForm = ({ person, personUpdate, handleTaskClose }) => {
   const [initialDate, setInitialDate] = useState('')
@@ -10,6 +11,7 @@ const TaskForm = ({ person, personUpdate, handleTaskClose }) => {
     const taskToAdd = {
       initialDate: initialDate,
       task: newTask,
+      id: uuidv4()
     }
     const tasks = person.tasks.concat(taskToAdd)
     console.log('new array: ', tasks)
