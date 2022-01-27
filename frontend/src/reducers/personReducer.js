@@ -36,7 +36,7 @@ export const initializePeople = () => {
 
 export const createPerson = content => {
   return async dispatch => {
-    personService.addPerson(content)
+    await personService.addPerson(content)
     dispatch ({
       type: 'ADD_PERSON',
       data: content

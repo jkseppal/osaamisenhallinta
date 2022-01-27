@@ -69,7 +69,8 @@ const personSchema = mongoose.Schema({
         type: String
       }
     }
-  ], physicals: [
+  ],
+  physicals: [
     {
       date: {
         type: String,
@@ -88,6 +89,34 @@ const personSchema = mongoose.Schema({
       },
       cooper: {
         type: Number,
+      },
+      id: {
+        type: String
+      }
+    }
+  ],
+  evaluations: [
+    {
+      date: {
+        type: String
+      },
+      shooting: {
+        type: Number
+      },
+      basics: {
+        type: Number
+      },
+      leadership: {
+        type: Number
+      },
+      leadershipByPeers: {
+        type: Number
+      },
+      physical: {
+        type: Number
+      },
+      ownRequest: {
+        type: Number
       },
       id: {
         type: String

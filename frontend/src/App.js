@@ -71,7 +71,9 @@ const App = () => {
     try {
       console.log('yritys...')
       await dispatch(createPerson(personObject))
+      console.log('addPerson createPerson solvattu')
       await dispatch(initializePeople())
+      console.log('addPerson initializePeople tehty')
       dispatch(notificationChange('henkilö lisätty', 5))
     } catch (exception) {
       dispatch(errorMessageChange('henkilön lisääminen epäonnistui', 5))

@@ -9,12 +9,14 @@ import TaskForm from './TaskForm'
 import TaskEndDate from './TaskEndDate'
 import UnitForm from './UnitForm'
 import UnitEndDate from './UnitEndDate'
+import EvaluationForm from './EvaluationForm'
 
 const Person = ({ people, personUpdate, groupList }) => {
   const [showPhysForm, setShowPhysForm] = useState(false)
   const [showLisForm, setShowLisForm] = useState(false)
   const [showTaskForm, setShowTaskForm] = useState(false)
   const [showUnitForm, setShowUnitForm] = useState(false)
+  const [showEvaluationForm, setShowEvaluationForm] = useState(false)
   
   const id = useParams().id
   let person = people.find(p => p.id === id)
@@ -24,6 +26,7 @@ const Person = ({ people, personUpdate, groupList }) => {
   const groupRef = useRef()
   const taskRef = useRef()
   const unitRef = useRef()
+  const evaluationRef = useRef()
 
   const handlePhysShow = () => setShowPhysForm(true)
   const handlePhysClose = () => setShowPhysForm(false)
@@ -36,6 +39,9 @@ const Person = ({ people, personUpdate, groupList }) => {
 
   const handleUnitShow = () => setShowUnitForm(true)
   const handleUnitClose = () => setShowUnitForm(false)
+
+  const handleEvaluationShow = () => setShowEvaluationForm(true)
+  const handleEvaluationClose = () => setShowEvaluationForm(false)
 
   if (!person) {
     return null
@@ -180,6 +186,46 @@ const Person = ({ people, personUpdate, groupList }) => {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleLisClose}>Peruuta</Button>
+          </Modal.Footer>
+        </Modal>
+      </Togglable>
+      <Togglable buttonLabel='arvioinnit' closeText='piilota' ref={evaluationRef}>
+        <Table striped hover>
+          <thead>
+            <tr>
+              <td>päivämäärä</td>
+              <td>ampumataito</td>
+              <td>sotilaan perustaidot</td>
+              <td>sopivuus johtajaksi (henkilökunta)</td>
+              <td>vertaisarvio</td>
+              <td>fyysinen toimintakyky</td>
+              <td>halukkuus johtajakoulutukseen</td>
+            </tr>
+          </thead>
+          <tbody>
+            {person.evaluations.map(e =>
+              <tr key={e.id}>
+                <td>{e.date}</td>
+                <td>{e.shooting}</td>
+                <td>{e.basics}</td>
+                <td>{e.leadership}</td>
+                <td>{e.leadershipByPeers}</td>
+                <td>{e.physical}</td>
+                <td>{e.ownRequest}</td>
+              </tr>
+            )}
+          </tbody>
+        </Table>
+        <Button onClick={handleEvaluationShow}>lisää arviointi</Button>
+        <Modal size="lg" show={showEvaluationForm} onHide={handleEvaluationClose} className="modal">
+          <Modal.Header closeButton>
+            <Modal.Title>Lisää arviointi</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <EvaluationForm person={person} personUpdate={personUpdate} handleEvaluationClose={handleEvaluationClose} />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleEvaluationClose}>Peruuta</Button>
           </Modal.Footer>
         </Modal>
       </Togglable>
