@@ -6,12 +6,21 @@ const People = ({ people }) => {
   const [firstFilter, setFirstFilter] = useState('')
   const [surFilter, setSurFilter] = useState('')
   const [hetuFilter, setHetuFilter] = useState('')
+  //const [showResults, setShowResults] = useState(false)
 
   let peopleByFirst = people.filter(p => p.firstname.toLowerCase().includes(firstFilter.toLowerCase()))
 
   let peopleBySur = peopleByFirst.filter(p => p.surname.toLowerCase().includes(surFilter.toLowerCase()))
 
   let peopleToShow = peopleBySur.filter(p => p.sosID.toLowerCase().includes(hetuFilter.toLowerCase()))
+
+  /*if (peopleToShow.length < 6) {
+    setShowResults(true)
+  }*/
+
+  /*if (peopleToShow.length >= 6) {
+    setShowResults(false)
+  }*/
 
   const handleFirstFilterChange = (event) => {
     setFirstFilter(event.target.value)
@@ -69,7 +78,7 @@ const People = ({ people }) => {
           </tr>
         </tbody>
       </table>
-      <Table striped hover>
+      {peopleToShow.length < 6 && <Table striped hover>
         <thead>
           <tr>
             <td>Sukunimi</td>
@@ -92,7 +101,10 @@ const People = ({ people }) => {
             </tr>
           )}
         </tbody>
-      </Table>
+      </Table>}
+      {peopleToShow.length >= 6 && <div>
+        liikaa tuloksia, rajaa hakua
+      </div>}
     </div>
   )
 }
