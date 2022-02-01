@@ -39,6 +39,7 @@ const TaskForm = ({ person, personUpdate, handleTaskClose }) => {
                   <Form.Control
                     type="text"
                     id="task"
+                    placeholder="esim. Yksikön päällikkö"
                     value={newTask}
                     onChange={({ target }) => setNewTask(target.value)}
                   />

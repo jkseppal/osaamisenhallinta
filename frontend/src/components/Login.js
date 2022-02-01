@@ -51,7 +51,7 @@ const Login = () => {
 
   if (user) {
     return (
-      <div>
+      <div className="container">
         <Notification />
         <ErrorMessage />
         <h2>Sisäänkirjautuminen onnistunut</h2>
@@ -59,45 +59,47 @@ const Login = () => {
     )
   } else {
     return (
-      <div className="login-box">
-        <div className="login" align="center">
-          <Notification />
-          <ErrorMessage />
-          <img src={tornileijona} alt="logo" width="100" />
-          <h2>kirjaudu sisään</h2>
-          <Form id="login" onSubmit={handleLogin}>
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <Form.Label>käyttäjätunnus</Form.Label>
-                  </td>
-                  <td>
-                    <Form.Control
-                      type="text"
-                      id="username"
-                      value={username}
-                      onChange={({ target }) => setUsername(target.value)}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <Form.Label>salasana</Form.Label>
-                  </td>
-                  <td>
-                    <Form.Control
-                      type="password"
-                      id="password"
-                      value={password}
-                      onChange={({ target }) => setPassword(target.value)}
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <Button type="submit" id="login-button">kirjaudu</Button>
-          </Form>
+      <div className="container">
+        <Notification />
+        <ErrorMessage />
+        <div className="login-box">
+          <div className="login" align="center">
+            <img src={tornileijona} alt="logo" width="100" />
+            <h2>kirjaudu sisään</h2>
+            <Form id="login" onSubmit={handleLogin}>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <Form.Label>käyttäjätunnus</Form.Label>
+                    </td>
+                    <td>
+                      <Form.Control
+                        type="text"
+                        id="username"
+                        value={username}
+                        onChange={({ target }) => setUsername(target.value)}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Form.Label>salasana</Form.Label>
+                    </td>
+                    <td>
+                      <Form.Control
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={({ target }) => setPassword(target.value)}
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <Button type="submit" id="login-button">kirjaudu</Button>
+            </Form>
+          </div>
         </div>
       </div>
     )

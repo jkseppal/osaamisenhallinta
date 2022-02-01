@@ -39,6 +39,7 @@ const UnitForm = ({ person, personUpdate, handleUnitClose }) => {
                   <Form.Control
                     type="text"
                     id="task"
+                    placeholder="esim. RLAIV/6PITOLV/2OHJVKÖ"
                     value={newUnit}
                     onChange={({ target }) => setNewUnit(target.value)}
                   />

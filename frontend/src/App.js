@@ -107,6 +107,7 @@ const App = () => {
                 addPerson={addPerson}
                 user={user}
                 groupList={groupList}
+                people={people}
               />
             </Route>
             <Route path="/people/:id">

@@ -45,6 +45,7 @@ const LicenseForm = ({ person, personUpdate, handleLisClose }) => {
                   <Form.Control
                     type="text"
                     id="content"
+                    placeholder="esim. Ammunnan johtaja"
                     value={content}
                     onChange={({ target }) => setContent(target.value)}
                   />

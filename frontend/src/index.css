@@ -32,3 +32,13 @@ code {
   padding-bottom: 2px;
   padding-right: 5px;
 }
+
+.wrongValueText {
+  color: red;
+  font-size: 0.75em;
+}
+
+.mainPage {
+  padding-top: 10px;
+  padding-right: 35%;
+}
